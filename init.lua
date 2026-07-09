@@ -45,3 +45,16 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+
+-- Clear nvim logs on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    local log_dir = vim.fn.stdpath("state")
+    local logs = { "lsp.log", "luasnip.log", "mason.log", "nvim.log" }
+    for _, log in ipairs(logs) do
+      local f = io.open(log_dir .. "/" .. log, "w")
+      if f then f:close() end
+    end
+  end,
+  once = true,
+})
