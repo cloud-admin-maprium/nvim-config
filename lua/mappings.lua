@@ -20,4 +20,3 @@ end, { desc = "Toggle spell check" })
 
 map("n", "<leader>tz", "<cmd>!zig test %<CR>", { desc = "Zig test current file" })
 map("n", "<leader>rz", "<cmd>!zig build run<CR>", { desc = "Zig build and run exec" })
-

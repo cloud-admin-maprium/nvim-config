@@ -1,4 +1,4 @@
-vim.g.mapleader = ' ' -- Ensure leader is space
+vim.g.mapleader = " " -- Ensure leader is space
 
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 
@@ -39,7 +39,6 @@ vim.schedule(function()
   require "mappings"
 end)
 
-
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "1"
@@ -49,11 +48,13 @@ vim.opt.foldlevelstart = 99
 -- Clear nvim logs on startup
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    local log_dir = vim.fn.stdpath("state")
+    local log_dir = vim.fn.stdpath "state"
     local logs = { "lsp.log", "luasnip.log", "mason.log", "nvim.log" }
     for _, log in ipairs(logs) do
       local f = io.open(log_dir .. "/" .. log, "w")
-      if f then f:close() end
+      if f then
+        f:close()
+      end
     end
   end,
   once = true,
